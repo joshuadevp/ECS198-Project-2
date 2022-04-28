@@ -2,6 +2,7 @@ package com.ecs198f.foodtrucks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ecs198f.foodtrucks.databinding.FoodTruckListItemBinding
 
@@ -28,6 +29,13 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
                 foodTruckListItemLocation.text = it.location
                 foodTruckListItemTime.text = it.formattedTimeInterval
             }
+        }
+
+        holder.binding.root.setOnClickListener{
+            val foodTruck = items[position]
+            val action = FoodTruckListFragmentDirections.actionFoodTruckListFragmentToFoodTruckDetailFragment(foodTruck)
+
+            it.findNavController().navigate(action)
         }
     }
 
