@@ -12,6 +12,7 @@ import java.time.LocalDateTime
 
 
 class FoodTruckDetailFragment : Fragment() {
+    private val args: FoodTruckDetailFragmentArgs by navArgs()
 
     private val foodItems = listOf(
         FoodItem(
@@ -41,10 +42,10 @@ class FoodTruckDetailFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val foodTruck = args.foodTruck
+        //view.findViewById<>()
         view.findViewById<RecyclerView>(R.id.itemListView).apply{
             layoutManager = LinearLayoutManager(context)
-            //val FoodTruck = FoodTruckDetailFragmentArgs.getArguments()
             adapter = FoodItemListRecyclerViewAdapter(foodItems)
         }
 
