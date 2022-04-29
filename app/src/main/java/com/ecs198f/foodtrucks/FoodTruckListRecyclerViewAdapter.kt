@@ -34,7 +34,7 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
         holder.binding.root.setOnClickListener{
             val foodTruck = items[position]
             val action = FoodTruckListFragmentDirections.actionFoodTruckListFragmentToFoodTruckDetailFragment(foodTruck)
-
+            action.foodTruck = foodTruck;
             it.findNavController().navigate(action)
         }
     }
