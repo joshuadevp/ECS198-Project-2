@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class FoodTruck(
     val id: String,
     val name: String,
-    val imageResId: Int,
+    val imageResId: String,
     val priceLevel: Int,
     val location: String,
     val openTime: LocalDateTime,

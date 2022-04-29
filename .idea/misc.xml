@@ -5,6 +5,11 @@
       <map>
         <entry key="..\:/Repos/ECS198F-AndroidCourse2022/FoodTruckApp-Stage2StarterCode/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
         <entry key="..\:/Repos/ECS198F-AndroidCourse2022/FoodTruckApp-Stage2StarterCode/app/src/main/res/layout/food_truck_list_item.xml" value="0.22327898550724637" />
+        <entry key="..\:/Users/Alpha/AndroidStudioProjects/ECS198-Project-2/app/src/main/res/drawable/spin.xml" value="0.157" />
+        <entry key="..\:/Users/Alpha/AndroidStudioProjects/ECS198-Project-2/app/src/main/res/layout/food_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Alpha/AndroidStudioProjects/ECS198-Project-2/app/src/main/res/layout/food_truck_list_item.xml" value="0.19972826086956522" />
+        <entry key="..\:/Users/Alpha/AndroidStudioProjects/ECS198-Project-2/app/src/main/res/layout/fragment_food_truck_detail.xml" value="0.5" />
+        <entry key="..\:/Users/Alpha/AndroidStudioProjects/ECS198-Project-2/app/src/main/res/layout/fragment_food_truck_list.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/food_item.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/layout/food_truck_list_item.xml" value="0.19610507246376813" />
