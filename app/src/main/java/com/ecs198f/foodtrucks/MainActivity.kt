@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     val foodService = Retrofit.Builder()
         .baseUrl("https://api.foodtruck.schedgo.com/")
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
         .create(FoodService::class.java)
 

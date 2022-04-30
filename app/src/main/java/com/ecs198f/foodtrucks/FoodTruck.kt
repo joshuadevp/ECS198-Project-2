@@ -14,11 +14,11 @@ data class FoodTruck(
     val imageUrl: String,
     val priceLevel: Int,
     val location: String,
-    val openTime: String,
-    val closeTime: String
+    val openTime: LocalDateTime,
+    val closeTime: LocalDateTime
 ): Parcelable {
     val formattedTimeInterval: String
-        get() = "${openTime} - ${closeTime}"
+        get() = "${openTime.format(timeOnlyFormatter)} - ${closeTime.format(dateTimeFormatter)}"
 
     companion object: Parceler<FoodTruck> {
         private val timeOnlyFormatter: DateTimeFormatter =
