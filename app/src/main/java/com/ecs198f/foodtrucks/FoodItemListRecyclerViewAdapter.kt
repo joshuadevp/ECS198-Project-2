@@ -6,9 +6,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ecs198f.foodtrucks.databinding.FoodItemBinding
 
-class FoodItemListRecyclerViewAdapter(private val items: List<FoodItem>) :
+class FoodItemListRecyclerViewAdapter(private var items: List<FoodItem>) :
     RecyclerView.Adapter<FoodItemListRecyclerViewAdapter.ViewHolder>() {
 
+    fun updateItemList(food: List<FoodItem>) {
+        this.items = food
+        notifyDataSetChanged()
+    }
     class ViewHolder(val binding: FoodItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

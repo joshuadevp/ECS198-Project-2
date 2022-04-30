@@ -11,14 +11,14 @@ import kotlinx.parcelize.Parcelize
 data class FoodTruck(
     val id: String,
     val name: String,
-    val imageResId: String,
+    val imageUrl: String,
     val priceLevel: Int,
     val location: String,
-    val openTime: LocalDateTime,
-    val closeTime: LocalDateTime
+    val openTime: String,
+    val closeTime: String
 ): Parcelable {
     val formattedTimeInterval: String
-        get() = "${openTime.format(timeOnlyFormatter)} - ${closeTime.format(dateTimeFormatter)}"
+        get() = "${openTime} - ${closeTime}"
 
     companion object: Parceler<FoodTruck> {
         private val timeOnlyFormatter: DateTimeFormatter =

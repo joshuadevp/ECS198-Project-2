@@ -1,6 +1,7 @@
 package com.ecs198f.foodtrucks
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,51 +23,9 @@ import java.time.LocalDateTime
 
 class FoodTruckDetailFragment : Fragment() {
     private val args: FoodTruckDetailFragmentArgs by navArgs()
+    private var foodList= listOf<FoodItem>()
+    private var fragmentAdapter = FoodItemListRecyclerViewAdapter(foodList)
 
-    val foodService = Retrofit.Builder()
-        .baseUrl("https://api.foodtruck.schedgo.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(FoodService::class.java)
-
-    private val foodList= listOf(
-        listOf(
-            FoodItem(
-                "1",
-                "1",
-                "Thai BBQ",
-                "Rice bowl combo with salad",
-                100.00,
-                false
-            ),
-            FoodItem(
-                "1",
-                "1",
-                "Lemon Tofu",
-                "Vegan rice bowl",
-                3.14159,
-                true
-            )
-        ),
-        listOf(
-            FoodItem(
-                "1",
-                "1",
-                "Nachos",
-                "Cheese and chips",
-                100.00,
-                false
-            ),
-            FoodItem(
-                "1",
-                "1",
-                "Hot Dog",
-                "Cheese and chips",
-                3.14159,
-                true
-            )
-        )
-    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,14 +36,29 @@ class FoodTruckDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val foodTruck = args.foodTruck
-        Glide.with(this).load(foodTruck.imageResId).into(view.findViewById<ImageView>(R.id.imageView))
+        Glide.with(this).load(foodTruck.imageUrl).into(view.findViewById<ImageView>(R.id.imageView))
         view.findViewById<TextView>(R.id.nameView).text = foodTruck.name
         view.findViewById<TextView>(R.id.locationView).text = foodTruck.location
         view.findViewById<TextView>(R.id.timeView).text = foodTruck.formattedTimeInterval
-        var foodItemList = foodList.get(foodTruck.id.toInt()-1)
+        val foodTruckService = (requireActivity() as MainActivity).foodService
+
+        foodTruckService.listFoodItems(foodTruck.id).enqueue(object : Callback<List<FoodItem>> {
+            override fun onResponse(
+                call: Call<List<FoodItem>>,
+                response: Response<List<FoodItem>>
+            ) {
+                foodList = response.body()!!
+                fragmentAdapter.updateItemList(foodList)
+            }
+
+            override fun onFailure(call: Call<List<FoodItem>>, t: Throwable) {
+                throw t
+            }
+        })
+
         view.findViewById<RecyclerView>(R.id.itemListView).apply{
             layoutManager = LinearLayoutManager(context)
-            adapter = FoodItemListRecyclerViewAdapter(foodItemList)
+            adapter = fragmentAdapter
         }
 
 
